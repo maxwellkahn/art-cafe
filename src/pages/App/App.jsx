@@ -16,7 +16,7 @@ function App() {
           <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path="/orders/new">
-              <NewOrderPage />
+              <NewOrderPage user={user} setUser={setUser} />
             </Route>
             <Route path="/orders">
               <OrderHistoryPage />

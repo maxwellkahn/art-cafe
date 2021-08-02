@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import artItemsAPI from "../../utilities/artItems-api";
+import ArtList from "../../components/ArtList/ArtList";
 
-export default function NewOrderPage() {
+export default function NewOrderPage({user, setUser}) {
   const [artItems, setArtItems] = useState([]);
+  const [activeCat, setActiveCat] = useState('');
   const categoriesRef = useRef([]);
 
   useEffect(function () {
@@ -20,6 +22,7 @@ export default function NewOrderPage() {
   return (
     <>
       <h1>NewOrderPage</h1>
+      <ArtList artItems={artItems}/>
       <button onClick={setArtItems}>Trigger re-render</button>
     </>
   );
