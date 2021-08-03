@@ -22,7 +22,7 @@ app.use(require('./config/checkToken'));
 // Put API routes here, before the catch all
 app.use('/api/users', require('./routes/api/users'));
 const ensureLoggedIn = require('./config/ensureLoggedIn');
-app.use('api/artItems', ensureLoggedIn, require('./routes/api/artItems'));
+app.use('/api/artItems', ensureLoggedIn, require('./routes/api/artItems'));
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));

@@ -27,12 +27,9 @@ export async function login(credentials) {
 }
 
 export function getToken() {
-    // getItem returns null if there is no string
     const token = localStorage.getItem('token');
     if (!token) return null;
-    // Check if expired, remove if it is
     const payload = JSON.parse(atob(token.split('.')[1]));
-    // A JWT's exp is expressed in second, not milliseconds, so convert it
     if (payload.exp < Date.now() / 1000) {
         localStorage.removeItem('token');
         return null;
@@ -42,7 +39,6 @@ export function getToken() {
 
 export function checkToken() {
     return usersAPI.checkToken()
-    // return a Date object for more flexibility
     .then(dateStr => new Date(dateStr))
 }
 
