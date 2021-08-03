@@ -23,6 +23,7 @@ app.use(require('./config/checkToken'));
 app.use('/api/users', require('./routes/api/users'));
 const ensureLoggedIn = require('./config/ensureLoggedIn');
 app.use('/api/artItems', ensureLoggedIn, require('./routes/api/artItems'));
+app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));

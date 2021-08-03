@@ -4,7 +4,7 @@ import CategoryList from '../../components/CategoryList/CategoryList';
 import ArtList from "../../components/ArtList/ArtList";
 import ArtOrderDetails from '../../components/ArtOrderDetails/ArtOrderDetails';
 import LogOut from '../../components/LogOut/LogOut';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export default function NewOrderPage({user, setUser}) {
   const [artItems, setArtItems] = useState([]);
@@ -26,9 +26,9 @@ export default function NewOrderPage({user, setUser}) {
   return (
     <>
       <h1>NewOrderPage</h1>
-      <CategoryList categories={categoriesRef.current} activeCat={activeCat} setActiveCat={setActiveCat}/>
+      {/* <CategoryList categories={categoriesRef.current} activeCat={activeCat} setActiveCat={setActiveCat}/> */}
       <ArtList artItems={artItems}/>
-      <Link to='/orders'>Other Orders</Link>
+      {/* <Link to='/orders'>Other Orders</Link> */}
       <ArtOrderDetails />
       <LogOut user={user} setUser={setUser}/>
     </>
