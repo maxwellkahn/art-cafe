@@ -1,3 +1,5 @@
+const Order = require('../../models/orders');
+
 module. exports = {
     cart,
     addToCart,
@@ -6,7 +8,8 @@ module. exports = {
 };
 
 async function cart(req, res) {
-
+    const cart = await Order.getCart(req.user._id);
+    res.json(cart);
 }
 
 async function addToCart(req, res) {

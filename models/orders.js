@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const artItemSchema = require("./artItemSchema");
 
-const lineItemSchema = newSchema(
+const lineItemSchema = new Schema(
   {
     qty: {
       type: Number,
@@ -48,5 +48,13 @@ orderSchema.virtual("totalQty").get(function () {
 orderSchema.virtual("orderId").get(function () {
   return this.id.slice(-6).toUpperCase();
 });
+
+orderSchema.statics.getCart = async function(userId) {
+  return this.findOneAndUpdate(
+    {user: userId, isPaid: false},
+    {user: userId },
+    { uspert: true, new: true }
+  )
+}
 
 module.exports = mongoose.model("Order", orderSchema);
