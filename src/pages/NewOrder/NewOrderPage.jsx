@@ -31,13 +31,20 @@ export default function NewOrderPage({user, setUser}) {
     getCart();
   }, []);
 
+  async function handleAddToCart(itemId) {
+    alert(`add item: ${itemId}`);
+    const cart = await artOrdersAPI.addToCart(itemId);
+    setCart(cart);
+  }
+
+
   return (
     <>
       <h1>NewOrderPage</h1>
       {/* <CategoryList categories={categoriesRef.current} activeCat={activeCat} setActiveCat={setActiveCat}/> */}
-      <ArtList artItems={artItems}/>
+      <ArtList artItems={artItems} handleAddToCart={handleAddToCart}/>
       {/* <Link to='/orders'>Other Orders</Link> */}
-      <ArtOrderDetails />
+      <ArtOrderDetails order={cart}/>
       <LogOut user={user} setUser={setUser}/>
     </>
   );

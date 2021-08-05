@@ -1,10 +1,10 @@
-export default function ArtListItem({artItem}) {
+export default function ArtListItem({artItem, handleAddToCart}) {
     return (
         <div>
         <div>{artItem.name}</div>
         <div>{artItem.artist}</div>
         <div>{artItem.price}</div>
-        <button onClick={() => console.log('added to cart')}>
+        <button onClick={() => handleAddToCart(artItem._id)}>
             Add to Cart
         </button>
         </div>
