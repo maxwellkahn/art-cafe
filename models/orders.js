@@ -51,19 +51,14 @@ orderSchema.virtual("orderId").get(function () {
 });
 
 orderSchema.statics.getCart = async function(userId) {
-  console.log('is something here, ', userId)
   return this.findOneAndUpdate(
     { user: userId, isPaid: false },
     { user: userId },
     { upsert: true, new: true },
-    console.log('what is this ', this)
   );
 };
 
-// this is the problem child
 orderSchema.methods.addArtToCart = async function (itemId) {
-  console.log('item id ', itemId)
-  // we never get the itemId
   const cart = this;
   const lineItem = cart.lineItems.find(lineItem =>
     lineItem.item._id.equals(itemId));

@@ -10,11 +10,12 @@ export default function ArtOrderDetails({ cart, handleCheckout }) {
   return (
     <div>
       {cart.isPaid ? (
-        <span>
-          Order # <span>{cart.orderId}</span>
-        </span>
+          <span>New Order</span>
+       
       ) : (
-        <span>New Order</span>
+        <span>
+        Order # <span>{cart.orderId}</span>
+      </span>
       )}
       <div>
         {lineItems.length ? (

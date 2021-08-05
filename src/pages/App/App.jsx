@@ -6,7 +6,6 @@ import OrderHistoryPage from "../OrderHistory/OrderHistoryPage";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import NavBar from "../../components/NavBar/NavBar";
-// import * as artItemsAPI from "../../utilities/artItems-api";
 
 
 function App() {

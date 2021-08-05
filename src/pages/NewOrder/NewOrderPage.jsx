@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import * as artItemsAPI from "../../utilities/artItems-api";
 import * as artOrdersAPI from '../../utilities/artOrders-api';
 import ArtList from "../../components/ArtList/ArtList";
@@ -26,7 +26,6 @@ export default function NewOrderPage({user, setUser}) {
   }, []);
 
   async function handleAddToCart(itemId) {
-    alert(`add item: ${itemId}`);
     const cart = await artOrdersAPI.addToCart(itemId);
     setCart(cart);
   }
@@ -40,7 +39,7 @@ export default function NewOrderPage({user, setUser}) {
     <>
       <h1>NewOrderPage</h1>
       <ArtList artItems={artItems} handleAddToCart={handleAddToCart}/>
-      {/* <Link to='/orders'>Other Orders</Link> */}
+      <Link to={{pathname:'/orders', state:{cart},}}>Other Orders</Link>
       <ArtOrderDetails cart={cart} handleCheckout={handleCheckout}/>
       <LogOut user={user} setUser={setUser}/>
     </>
