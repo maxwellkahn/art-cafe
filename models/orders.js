@@ -34,6 +34,7 @@ const orderSchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: {virtuals: true},
   }
 );
 
@@ -50,21 +51,26 @@ orderSchema.virtual("orderId").get(function () {
 });
 
 orderSchema.statics.getCart = async function(userId) {
+  console.log('is something here, ', userId)
   return this.findOneAndUpdate(
-    {user: userId, isPaid: false},
-    {user: userId },
-    { uspert: true, new: true }
-  )
+    { user: userId, isPaid: false },
+    { user: userId },
+    { upsert: true, new: true },
+    console.log('what is this ', this)
+  );
 };
 
-orderSchema.methods.addToCart = async function (itemId) {
+// this is the problem child
+orderSchema.methods.addArtToCart = async function (itemId) {
+  console.log('item id ', itemId)
+  // we never get the itemId
   const cart = this;
   const lineItem = cart.lineItems.find(lineItem =>
     lineItem.item._id.equals(itemId));
       if(lineItem) {
         lineItem.qty += 1;
       } else {
-        const item = await mongoose.model('artItem').findById(itemId);
+        const item = await mongoose.model('ArtItem').findById(itemId);
         cart.lineItems.push({item});
       }
       return cart.save();

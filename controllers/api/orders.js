@@ -8,16 +8,17 @@ module. exports = {
 };
 
 async function cart(req, res) {
+    console.log('user id ', req.user._id)
     const cart = await Order.getCart(req.user._id);
+    console.log('the cart ', cart)
     res.json(cart);
-    console.log(cart)
 }
 
 async function addToCart(req, res) {
     const cart = await Order.getCart(req.user._id);
-    await cart.addToCart(req.params.id);
+    console.log('the id ', req.params.id)
+    await cart.addArtToCart(req.params.id);
     res.json(cart);
-    console.log('the cart updated ', cart)
 }
 
 async function setCartQty(req, res) {
@@ -25,5 +26,8 @@ async function setCartQty(req, res) {
 }
 
 async function checkout(req, res) {
-    
+    const cart = await Order.getCart(req.user._id);
+    cart.isPaid = true,
+    await cart.save();
+    res.json(cart);
 }

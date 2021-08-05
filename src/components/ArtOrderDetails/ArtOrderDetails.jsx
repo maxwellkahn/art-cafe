@@ -1,17 +1,17 @@
 import LineItem from "../LineItem/LineItem";
 
-export default function ArtOrderDetails({ order }) {
-  if (!order) return null;
+export default function ArtOrderDetails({ cart, handleCheckout }) {
+  if (!cart) return null;
 
-  const lineItems = order.lineItems.map((art) => (
-    <LineItem lineItem={art} isPaid={order.isPaid} key={art._id} />
+  const lineItems = cart.lineItems.map((art) => (
+    <LineItem lineItem={art} isPaid={cart.isPaid} key={art._id} />
   ));
 
   return (
     <div>
-      {order.isPaid ? (
+      {cart.isPaid ? (
         <span>
-          Order # <span>{order.orderId}</span>
+          Order # <span>{cart.orderId}</span>
         </span>
       ) : (
         <span>New Order</span>
@@ -21,18 +21,18 @@ export default function ArtOrderDetails({ order }) {
           <>
             {lineItems}
             <section>
-              {order.isPaid ? (
+              {cart.isPaid ? (
                 <span>Total</span>
               ) : (
                 <button
-                  onClick={() => alert("Buy this")}
+                  onClick={handleCheckout}
                   disabled={!lineItems.length}
                 >
                   Checkout
                 </button>
               )}
-              <span>{order.totalQty}</span>
-              <span>${order.orderTotal.toFixed(2)}</span>
+              <span>{cart.totalQty}</span>
+              <span>${cart.orderTotal}</span>
             </section>
           </>
         ) : (
