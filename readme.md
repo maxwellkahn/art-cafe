@@ -2,9 +2,10 @@
 
 ## Screenshots
 
-<img src="/imgs/artCafeLogIn.png" href="/imgs/artCafeLogIn.png">
+![artCafeLogIn](https://user-images.githubusercontent.com/84647368/128544929-a82cb96f-4c75-4b0a-adf4-f1449f4963de.png)!
+
 <br>
-<img src="/imgs/newOrderPage.png" href="/imgs/newOrderPage.png">
+[newOrderPage](https://user-images.githubusercontent.com/84647368/128545014-cebb258f-447a-4038-87f2-aac249e02e5d.png)
 
 ## Technologies Used 
 mongoose/mongoDB, express, react, javascript, HTML, CSS, Atlas Heroku
