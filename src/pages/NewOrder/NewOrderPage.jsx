@@ -9,7 +9,6 @@ import { Link, useHistory } from 'react-router-dom';
 export default function NewOrderPage({user, setUser}) {
   const [artItems, setArtItems] = useState([]);
   const [cart, setCart] = useState(null);
-  const [paidOrders, setPaidOrders] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
