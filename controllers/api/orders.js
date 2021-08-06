@@ -35,14 +35,4 @@ async function checkout(req, res) {
 async function getOrders(req, res) {
     const orders = await Order.find({})
     res.json(orders);
-
-
-
-    // const orders = await Order.getDataOrders(req.user._id);
-    // console.log('USERS ORDERS IN CONTROLLER ', orders)
-    // res.json(orders);
-
-    // const orders = await Order.find(req.user._id);
-    // console.log('the orders ', orders)
-    // res.json(orders);
 }
