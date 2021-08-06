@@ -11,15 +11,7 @@ import NavBar from "../../components/NavBar/NavBar";
 
 function App() {
   const [user, setUser] = useState(getUser());
-  const [paidOrders, setPaidOrders] = useState([]);
-
-  useEffect(() => {
-    async function pastOrders() {
-      const orders = await artOrdersAPI.getAllOrders();
-      setPaidOrders(orders);
-    }
-    pastOrders();
-  }, []);
+ 
 
   return (
     <main className="App">
@@ -31,7 +23,7 @@ function App() {
               <NewOrderPage user={user} setUser={setUser}/>
             </Route>
             <Route path="/orders">
-              <OrderHistoryPage paidOrders={paidOrders}/>
+              <OrderHistoryPage />
             </Route>
             <Redirect to="/orders" />
           </Switch>
