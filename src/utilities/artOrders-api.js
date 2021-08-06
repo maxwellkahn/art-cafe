@@ -17,3 +17,8 @@ export function setCartQty(itemId, newQty) {
 export function checkout() {
   sendRequest(`${BASE_URL}/cart/checkout`, "POST");
 }
+
+export function getAllOrders() {
+  console.log('Hit the api utility')
+  return sendRequest(`${BASE_URL}`)
+}

@@ -71,4 +71,15 @@ orderSchema.methods.addArtToCart = async function (itemId) {
       return cart.save();
 };
 
+orderSchema.methods.setCartQty = async function (itemId, newQty) {
+  const cart = this;
+  const lineItem = cart.lineItems.find(lineItem => lineItem.item._id.equals(itemId));
+    if(lineItem && newQty <= 0) {
+      lineItem.remove();
+    } else if (lineItem) {
+      lineItem.qty = newQty;
+    }
+    return cart.save();
+}
+
 module.exports = mongoose.model("Order", orderSchema);

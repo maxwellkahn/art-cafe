@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import * as artOrdersAPI from '../../utilities/artOrders-api';
 import "./App.css";
 import AuthPage from "../AuthPage/AuthPage";
 import NewOrderPage from "../NewOrder/NewOrderPage";
@@ -10,6 +11,15 @@ import NavBar from "../../components/NavBar/NavBar";
 
 function App() {
   const [user, setUser] = useState(getUser());
+  const [paidOrders, setPaidOrders] = useState([]);
+
+  useEffect(() => {
+    async function pastOrders() {
+      const orders = await artOrdersAPI.getAllOrders();
+      setPaidOrders(orders);
+    }
+    pastOrders();
+  }, []);
 
   return (
     <main className="App">
@@ -21,7 +31,7 @@ function App() {
               <NewOrderPage user={user} setUser={setUser}/>
             </Route>
             <Route path="/orders">
-              <OrderHistoryPage />
+              <OrderHistoryPage paidOrders={paidOrders}/>
             </Route>
             <Redirect to="/orders" />
           </Switch>

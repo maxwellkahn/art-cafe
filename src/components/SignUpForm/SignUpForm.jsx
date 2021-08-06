@@ -25,7 +25,6 @@ export default class SignUpForm extends Component {
           delete formData.confirm;
 
           const user = await signUp(formData);
-          console.log('THE USER ', user)
           this.props.setUser(user);
 
         } catch {

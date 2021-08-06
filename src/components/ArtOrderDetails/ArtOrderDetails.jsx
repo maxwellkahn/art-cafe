@@ -1,10 +1,10 @@
 import LineItem from "../LineItem/LineItem";
 
-export default function ArtOrderDetails({ cart, handleCheckout }) {
+export default function ArtOrderDetails({ cart, handleCheckout, handleChangeQty }) {
   if (!cart) return null;
 
   const lineItems = cart.lineItems.map((art) => (
-    <LineItem lineItem={art} isPaid={cart.isPaid} key={art._id} />
+    <LineItem lineItem={art} isPaid={cart.isPaid} key={art._id} handleChangeQty={handleChangeQty}/>
   ));
 
   return (

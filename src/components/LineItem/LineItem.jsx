@@ -1,20 +1,20 @@
-export default function LineItem({ lineItem, isPaid }) {
+export default function LineItem({ lineItem, isPaid, handleChangeQty }) {
   return (
     <div>
       <div className="ArtPiece">
         <span>{lineItem.item.name}</span>
-        <span>{lineItem.item.price.toFixed(2)}</span>
+        <span>{lineItem.item.price}</span>
       </div>
       <div className="AorSQty">
         {!isPaid && (
-          <button onClick={() => alert("subtract quantity")}>-</button>
+          <button onClick={() => handleChangeQty(lineItem.item._id, lineItem.qty -= 1)}>-</button>
           )}
           <span>{lineItem.qty}</span>
         {!isPaid && 
-            <button onClick={() => alert('add quantity')}>+</button>
+            <button onClick={() => handleChangeQty(lineItem.item._id, lineItem.qty += 1)}>+</button>
         }
       </div>
-      <div>${lineItem.extPrice.toFixed(2)}</div>
+      <div>${lineItem.extPrice}</div>
     </div>
   );
 }

@@ -9,9 +9,10 @@ import { Link, useHistory } from 'react-router-dom';
 export default function NewOrderPage({user, setUser}) {
   const [artItems, setArtItems] = useState([]);
   const [cart, setCart] = useState(null);
+  const [paidOrders, setPaidOrders] = useState([]);
   const history = useHistory();
 
-  useEffect(function () {
+  useEffect(() => {
     async function getArtItems() {
       const artItems = await artItemsAPI.getAll();
       setArtItems(artItems);
@@ -30,6 +31,11 @@ export default function NewOrderPage({user, setUser}) {
     setCart(cart);
   }
 
+  async function handleChangeQty(itemId, newQty) {
+    const cart = await artOrdersAPI.setCartQty(itemId, newQty);
+    setCart(cart);
+  }
+
   async function handleCheckout() {
     await artOrdersAPI.checkout();
     history.push('/orders');
@@ -39,8 +45,8 @@ export default function NewOrderPage({user, setUser}) {
     <>
       <h1>NewOrderPage</h1>
       <ArtList artItems={artItems} handleAddToCart={handleAddToCart}/>
-      <Link to={{pathname:'/orders', state:{cart},}}>Other Orders</Link>
-      <ArtOrderDetails cart={cart} handleCheckout={handleCheckout}/>
+      <Link to='/orders'>Other Orders</Link>
+      <ArtOrderDetails cart={cart} handleCheckout={handleCheckout} handleChangeQty={handleChangeQty}/>
       <LogOut user={user} setUser={setUser}/>
     </>
   );
