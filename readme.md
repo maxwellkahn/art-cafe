@@ -2,9 +2,9 @@
 
 ## Screenshots
 
-<img src="https://imgur.com/a/WBpIkhf">
+<img src="/imgs/artCafeLogIn.png" href="/imgs/artCafeLogIn.png">
 <br>
-<img src="https://imgur.com/a/bqOlKEj">
+<img src="/imgs/newOrderPage.png" href="/imgs/newOrderPage.png">
 
 ## Technologies Used 
 mongoose/mongoDB, express, react, javascript, HTML, CSS, Atlas Heroku
